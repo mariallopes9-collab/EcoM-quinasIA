@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoMáquinas | Diagnóstico Industrial Inteligente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<!-- headerrr -->
+<header class="topbar">
+  <div class="logo">
+     <img src="img/download.png" alt="" width="47px">
+    EcoMáquinas
+  </div>
+  <nav class="step-nav" id="stepNav">
+    <div class="step-item" id="stepWelcome" data-step="welcome">
+      <div class="step-num">✦</div> Início
+    </div>
+    <div class="step-connector" id="conn1"></div>
+    <div class="step-item" id="step1" data-step="pag1">
+      <div class="step-num">1</div> Diagnóstico
+    </div>
+    <div class="step-connector" id="conn2"></div>
+    <div class="step-item" id="step2" data-step="pag2">
+      <div class="step-num">2</div> Análise IA
+    </div>
+    <div class="step-connector" id="conn3"></div>
+    <div class="step-item" id="step3" data-step="pag3">
+      <div class="step-num">3</div> Dados Gerais
+    </div>
+  </nav>
+  <div class="topbar-right">
+    <div class="badge-live"><div class="dot-live"></div> Sistema ativo</div>
+  </div>
+</header>
+
+<div class="app-layout">
+<div class="page-wrap">
+
+<!-- bem vindo! -->
+<div id="pageWelcome" class="page-section">
+  <div class="card card-glow">
+    <div class="welcome-hero">
+      <div class="section-badge">Indústria 4.0 + Sustentabilidade</div>
+      <h1 class="hero-title">Diagnóstico Industrial<br>com Inteligência Verde</h1>
+      <p class="hero-sub">Analise máquinas industriais, calcule emissões de carbono e receba recomendações inteligentes para reduzir custos e impacto ambiental.</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">30%</span>
+          <span class="hero-stat-label">Redução de consumo</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">IA</span>
+          <span class="hero-stat-label">Identificação de modelo</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">CO₂</span>
+          <span class="hero-stat-label">Cálculo de emissões</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">RT</span>
+          <span class="hero-stat-label">Dados em tempo real</span>
+        </div>
+      </div>
+
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" id="btnIniciarDiagnostico">
+        Iniciar Diagnóstico
+        </button>
+        <button class="btn btn-secondary btn-lg" id="btnVerDados">
+          Ver Dados do Parque
+        </button>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feat-icon">🤖</span>
+        <div class="feat-title">IA Identificadora</div>
+        <div class="feat-desc">Reconhece modelo, ano e potência nominal a partir da imagem da máquina.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">♻️</span>
+        <div class="feat-title">Cálculo de Carbono</div>
+        <div class="feat-desc">Estima emissões CO₂ acumuladas e projeta reduções com boas práticas.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">⚡</span>
+        <div class="feat-title">Alertas Inteligentes</div>
+        <div class="feat-desc">Detecta stand-by desnecessário, manutenção atrasada e consertos urgentes.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- etapa 1 -->
+<div id="pagina1" style="display:none" class="page-section">
+  <div class="card card-glow">
+    <div class="section-badge">Etapa 1 de 3</div>
+    <h2 class="section-title">Diagnóstico da <span class="highlight">Máquina</span></h2>
+    <p class="section-sub">Envie uma foto e preencha os dados operacionais — a IA vai identificar modelo e potência automaticamente.</p>
+
+    <div class="form-grid">
+      <!-- Upload -->
+      <div>
+        <label class="label">Foto da máquina</label>
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('machineImage').click()">
+          <div id="imagePreview">
+            <div class="upload-icon">📷</div>
+            <p>Clique ou arraste a foto aqui</p>
+            <small>Torno, CNC, fresadora, prensa...</small>
+          </div>
+        </div>
+        <input type="file" id="machineImage" accept="image/*" style="display:none">
+        <p style="font-size:0.72rem; color:var(--text3); margin-top:8px;">* Simulação IA: ano e potência inferidos</p>
+      </div>
+
+      <!-- campos -->
+      <div>
+        <div class="input-row">
+          <div>
+            <label class="label">Horas totais de uso</label>
+            <input class="input" type="number" id="usoHoras" placeholder="Ex: 12500" value="8700">
+          </div>
+          <div>
+            <label class="label">Ano de compra</label>
+            <input class="input" type="number" id="anoCompra" placeholder="Ex: 2015" value="2017">
+          </div>
+        </div>
+        <label class="label">Período de uso diário</label>
+        <input class="input" type="text" id="horasDia" placeholder="Ex: 07:00 - 17:00 ou 8h/dia" value="07:30 - 17:30">
+
+        <label class="label" style="margin-bottom:10px">Tipo de máquina (opcional)</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem;">
+          <button type="button" class="btn btn-ghost" style="font-size:0.78rem; padding:7px 14px;" onclick="selecionarTipo(this,'Torno')">Torno</button>
+          <button type="button" class="btn btn-ghost" style="font-size:0.78rem; padding:7px 14px;" onclick="selecionarTipo(this,'Fresadora')">Fresadora</button>
+          <button type="button" class="btn btn-ghost" style="font-size:0.78rem; padding:7px 14px;" onclick="selecionarTipo(this,'Prensa')">Prensa</button>
+          <button type="button" class="btn btn-ghost" style="font-size:0.78rem; padding:7px 14px;" onclick="selecionarTipo(this,'CNC')">CNC</button>
+        </div>
+
+        <div id="analyzeBtn">
+          <button class="btn btn-primary btn-full" id="btnGerarAnalise" style="padding:14px; font-size:1rem;">
+            <span></span> Analisar com IA
+          </button>
+        </div>
+        <div id="loadingAnalyze" style="display:none;">
+          <div class="loading-bar" id="loadingBarEl"></div>
+          <div class="analyzing-state">
+            <div class="spinner"></div>
+            <div>
+              <div style="font-weight:600; font-size:0.9rem;">Processando análise...</div>
+              <div style="font-size:0.8rem; color:var(--text3);">Identificando modelo, calculando emissões</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-ghost" id="btnVoltarWelcome">← Voltar</button>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+<!-- etapa 2 -->
+<div id="pagina2" style="display:none" class="page-section">
+  <div class="card card-glow">
+    <div class="section-badge">Etapa 2 de 3</div>
+    <h2 class="section-title">Análise de <span class="highlight">Descarbonização</span></h2>
+    <p class="section-sub">Modelo inferido pela IA · Emissões estimadas · Recomendações de melhoria</p>
+
+    <div id="resultadosPagina2">
+      <div class="analyzing-state">
+        <div style="font-size:1.5rem;"></div>
+        <div>
+          <div style="font-weight:600;">Aguardando análise</div>
+          <div style="font-size:0.8rem; color:var(--text3);">Preencha a Etapa 1 para gerar os resultados.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-ghost" id="btnVoltarPagina1">← Editar dados</button>
+      <div class="page-nav-right">
+        <button class="btn btn-primary" id="btnIrPagina3"><span></span> Ver Dados Gerais →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- etapa 3 -->
+<div id="pagina3" style="display:none" class="page-section">
+  <div class="card card-glow">
+    <div class="section-badge">Etapa 3 de 3</div>
+    <h2 class="section-title">Parque de Máquinas — <span class="highlight">Visão Geral</span></h2>
+    <p class="section-sub">Alertas ativos · Interrupção stand-by · Solicitações de conserto · Feed simulado Google Sheets</p>
+
+    <div id="analiseSistemaContainer">
+      <div class="analyzing-state">
+        <div style="font-size:1.5rem;"></div>
+        <div>
+          <div style="font-weight:600;">Nenhum dado carregado</div>
+          <div style="font-size:0.8rem; color:var(--text3);">Gere uma análise na Etapa 1 ou clique em "Sincronizar" abaixo.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-ghost" id="btnVoltarPagina2Da3">← Voltar à Análise</button>
+      <div class="page-nav-right">
+        <button class="btn btn-secondary" id="simularGoogleSheets"><span></span> Sincronizar Sheets</button>
+        <button class="btn btn-ghost" onclick="mostrarPagina('welcome')">Início</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<footer class="footer">
+
+  <strong>EcoMáquinas</strong> — Gestão sustentável com indicadores de descarbonização &nbsp;·&nbsp; Simulação protótipo Grand Prix 2026
+
+   <br><br>
+  <div id="parceria">
+    <strong>Em parceria com</strong>
+    <br>
+    <div id="logo">
+    <img src="img/images.png" alt="" width="120px">
+    <img src="img/logo schneider.png" alt="" width="120px">
+    </div>
+    <br><br>
+    <strong>Geração E — Malu, Yasmin, Tochi, João & Gustavo</strong>
+    <br><br>
+      <button onclick="mostrarContato()" id="botaocontato">
+    Contato
+  </button>
+
+  </div>
+
+
+
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
