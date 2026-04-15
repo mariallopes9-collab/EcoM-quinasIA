@@ -174,9 +174,9 @@ function atualizarPagina2() {
 
   let sugestoes = [];
   if (horas > 10000) sugestoes.push('Manutenção preditiva obrigatória — tempo de uso acima de 10.000 horas.');
-  if (pot > 22)      sugestoes.push('Instalar variador de frequência (VFD) para reduzir picos de consumo.');
-  if (idadeAnos > 8) sugestoes.push('Substituição por modelo Classe A economiza até 30% de energia elétrica.');
-  if (horasDiarias > 10) sugestoes.push('Programar desligamento automático durante paradas longas (>30 min).');
+  if (pot > 22)      sugestoes.push('Instalar inversor de frequência ou Soft-Starter para reduzir picos de consumo.');
+  if (idadeAnos > 8) sugestoes.push('Instalação de Gateways ou micro (ESP-32) controlador com protocolo wi-fi para monitorar a máquina');
+  if (horasDiarias > 10) sugestoes.push('Instalação de medidores de energia, tensão e/ou corrente elétrica que monitora a máquina quando não há consumo ou uso, e indicar ao usuário ou gestor');
   if (horas > 7000)  sugestoes.push('Considerar interrupção em stand-by quando ociosa por mais de 20 minutos.');
   if (!sugestoes.length) sugestoes.push('Operação dentro dos parâmetros normais. Mantenha lubrificação em dia.');
   sugestoes.push('Integração com energia solar fotovoltaica pode reduzir emissões em até 40%.');
@@ -269,7 +269,7 @@ function atualizarPagina3ComHistorico() {
   const tabelaHtml = `
     <div style="display:flex; align-items:center; justify-content:space-between; margin:1.5rem 0 0.8rem; flex-wrap:wrap; gap:8px;">
       <div style="font-family:var(--font2); font-weight:700; color:var(--text);">Máquinas Cadastradas <span style="background:rgba(52,211,153,0.1); color:var(--green); border-radius:20px; padding:2px 10px; font-size:0.75rem; margin-left:6px;">${historicoMaquinas.length}</span></div>
-      <div style="font-size:0.72rem; color:var(--text3);">📎 Feed simulado Google Sheets</div>
+      <div style="font-size:0.72rem; color:var(--text3);">📎 Feed simulado pelo Web Server </div>
     </div>
     <div class="table-wrap">
     <table>
@@ -336,7 +336,7 @@ function simularNovosDadosSheets() {
   salvarHistoricoLocal();
   atualizarPagina3ComHistorico();
   Swal.fire({
-    icon:'success', title:'Sheets sincronizado!', text:`${novos.length} novos registros importados.`,
+    icon:'success', title:'Sincronizado!', text:`${novos.length} novos registros importados.`,
     toast:true, position:'top-end', timer:2000, showConfirmButton:false,
     background:'#141f1a', color:'#e2ffe8'
   });
